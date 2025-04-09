@@ -15,7 +15,7 @@ export const TodoListItem = ({
     <li className="border-b-[0.5px] flex items-center h-[3rem] px-[1.25rem] border-b-[var(--very-light-grayish-blue)] gap-3 text-xs">
       <span>
         <button
-          className={`relative rounded-full h-5 w-5 aspect-square border border-[var(--very-light-grayish-blue)] hover:bg-gradient-to-br hover:from-[var(--gradient-a)] hover:to-[var(--gradient-b)] inline-flex justify-center p-0.5 ${
+          className={`relative rounded-full h-5 w-5 md:h-6 md:w-6 aspect-square border border-[var(--very-light-grayish-blue)] hover:bg-gradient-to-br hover:from-[var(--gradient-a)] hover:to-[var(--gradient-b)] inline-flex justify-center p-0.5 ${
             task.completed &&
             "bg-gradient-to-br from-[var(--gradient-a)] to-[var(--gradient-b)]"
           }`}
@@ -37,7 +37,7 @@ export const TodoListItem = ({
         </button>
       </span>
       <p
-        className={`w-full truncate leading-none ${
+        className={`w-full md:text-[18px] truncate leading-none ${
           task.completed && "line-through text-[var(--dark-grayish-blue)]"
         }`}
       >

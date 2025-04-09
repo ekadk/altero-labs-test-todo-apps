@@ -67,14 +67,20 @@ export default function Home() {
           src={"/bg-mobile-light.jpg"}
           alt=""
           fill
-          className="absolute object-cover"
+          className="absolute object-cover md:hidden"
+        />
+        <Image
+          src={"/bg-desktop-light.jpg"}
+          alt=""
+          fill
+          className="absolute object-cover hidden md:block"
         />
       </div>
 
       {/* HEADER */}
-      <div className="relative w-full min-h-screen z-20 max-w-screen-md mx-auto px-6 pt-12">
+      <div className="relative w-full min-h-screen z-20 max-w-[540px] mx-auto px-6 pt-12">
         <div className="mb-10 flex justify-between items-center h-[22px]">
-          <div className="text-[26px] leading-none tracking-[0.625rem] font-bold text-white h-[22px]">
+          <div className="text-[26px] md:text-[40px] leading-none tracking-[0.625rem] font-bold text-white h-[22px] md:h-[36px]">
             TODO
           </div>
           <div className="h-[22px] w-[22px] relative">
@@ -84,7 +90,7 @@ export default function Home() {
 
         {/* TODO FORM */}
         <form onSubmit={handleSubmit}>
-          <div className="flex items-center gap-3 w-full h-[3rem] bg-white rounded mb-[1.125rem] px-[1.25rem] text-xs">
+          <div className="flex items-center gap-3 w-full h-[3rem] md:h-[4rem] bg-white rounded md:rounded-md mb-[1.125rem] px-[1.25rem] text-xs md:text-[18px] max-w-[540px]">
             <span>
               <Button variant="styled" size="icon" type="submit">
                 <div className="w-full h-full rounded-full flex items-center justify-center bg-white" />
@@ -121,13 +127,35 @@ export default function Home() {
           </ul>
 
           <div className="flex items-center h-[3rem] justify-between text-xs px-[1.25rem]">
-            <div>{tasks?.filter((el) => !el.completed).length} items left</div>
+            <div className="">
+              {tasks?.filter((el) => !el.completed).length} items left
+            </div>
+            <div className="hidden md:flex md:justify-center md:gap-4">
+              <Button
+                variant={filter === "all" ? "active" : "default"}
+                onClick={() => updateFilter("all")}
+              >
+                All
+              </Button>
+              <Button
+                variant={filter === "active" ? "active" : "default"}
+                onClick={() => updateFilter("active")}
+              >
+                Active
+              </Button>
+              <Button
+                variant={filter === "completed" ? "active" : "default"}
+                onClick={() => updateFilter("completed")}
+              >
+                Complete
+              </Button>
+            </div>
             <Button onClick={() => clearCompletedTask()}>
               clear completed
             </Button>
           </div>
         </div>
-        <div className="bg-white flex items-center h-[3rem] justify-center px-[1.25rem] gap-4 rounded shadow-xl text-sm mb-10">
+        <div className="md:hidden bg-white flex items-center h-[3rem] justify-center px-[1.25rem] gap-4 rounded shadow-xl text-sm mb-10">
           <Button
             variant={filter === "all" ? "active" : "default"}
             onClick={() => updateFilter("all")}
